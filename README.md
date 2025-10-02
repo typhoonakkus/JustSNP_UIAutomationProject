@@ -6,14 +6,15 @@ The framework is also strengthened using the TestNG structure.
 
 Technologies and Libraries Used
 
- → Java jdk 17
+ → Java jdk 17 download
  → Maven (build management) - With surefire plugin
- → Selenium WebDriver 
- → Cucumber (BDD)
- → TestNG (test suite and parallel execution, annotations, assertions)
- → Allure Reports 
- → WebDriverManager (automatic driver management)
- → API Test Tool : Postman using Newman 
+ → Selenium WebDriver (mvn dependency)
+ → Cucumber (BDD) (mvn dependency)
+ → TestNG (test suite and parallel execution, annotations, assertions) (mvn dependency)
+ → Allure (Report) 
+   Download Allure from the [Allure Releases page](https://github.com/allure-framework/allure2/releases).
+ → WebDriverManager (automatic driver management) (mvn dependency)
+ → API Test Tool Postman using Newman 
  → IDE - Intellij
 
 Project Structure
