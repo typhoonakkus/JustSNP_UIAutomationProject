@@ -6,18 +6,19 @@ The framework is also strengthened using the TestNG structure.
 
 Technologies and Libraries Used
 
- → Java 11+
- → Maven (build management)
- → Selenium WebDriver
+ → Java jdk 17
+ → Maven (build management) - With surefire plugin
+ → Selenium WebDriver 
  → Cucumber (BDD)
  → TestNG (test suite and parallel execution, annotations, assertions)
  → Allure Reports 
  → WebDriverManager (automatic driver management)
+ → IDE - Intellij
 
 Project Structure
   The framework is organized as follows:
   
-  src/test/java      → Step Definitions, Runners, Hooks  
+  src/test/java      → Base, Pages, Step Definitions, Runner, Hooks, Utility
   src/test/resources → Feature files (.feature), Configurations , API Test files (Postman) : functionalTesting.postman_collection , TEST.postman_environment 
   src/main/java      → Core framework classes (Driver, Utilities)  
   pom.xml            → Maven build configuration  
@@ -35,7 +36,8 @@ mvn clean test -Dtest=Runner  → Run all tests
 
 -DrunMode=grid → Parallel execution using TestNG XML (Grid execution)
 
-Run API test using postman collections with newman
+Run API Test : postman collections and postman environment files using newman
+run command:
 newman run src/test/resources/functionalTesting.postman_collection.json -e src/test/resources/TEST.postman_environment.json --export-environment src/test/resources/TEST.postman_environment.json
 
 
@@ -52,8 +54,7 @@ This creates the folder:
   Open the report in browser (local server):
   allure serve target/allure-results
 
-Info
-
+Info:
   DriverManager class allows running tests either locally or on Selenium Grid.  
   Utility/Find.java contains dynamic methods for finding elements (Element, Elements).  
   Utility/Assertion.java includes customized assertion methods built on top of TestNG Assert. 
