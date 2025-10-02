@@ -13,6 +13,7 @@ Technologies and Libraries Used
  → TestNG (test suite and parallel execution, annotations, assertions)
  → Allure Reports 
  → WebDriverManager (automatic driver management)
+ → API Test Tool : Postman using Newman 
  → IDE - Intellij
 
 Project Structure
