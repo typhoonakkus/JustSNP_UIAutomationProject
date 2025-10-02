@@ -52,11 +52,11 @@ The framework is also strengthened using the TestNG structure.
 
 ## _Reporting with Allure_
 
-  After test execution, Allure results are stored under: target/allure-results
-  Generate the report:  mvn allure:report 
-  This creates the folder: target/allure-report
-  if allure generate report runtime ,open the report using mvn allure:serve    
-  Open the report in browser (local server): allure serve target/allure-results
+  * After test execution, Allure results are stored under: target/allure-results 
+  * Generate the report:  mvn allure:report 
+  * This creates the folder: target/allure-report
+  * If allure generate report runtime ,open the report using mvn allure:serve    
+  * Open the report in browser (local server): allure serve target/allure-results
 
 ## Info:
   DriverManager class allows running tests either locally or on Selenium Grid.  
