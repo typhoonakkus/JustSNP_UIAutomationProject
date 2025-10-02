@@ -6,7 +6,8 @@ The framework is also strengthened using the TestNG structure.
 
 Technologies and Libraries Used
 
- → Java jdk 17 download
+ → IDE - Intellij Download Intellij here : [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
+ → Java jdk 17 download : [Java SE 17 Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
  → Maven (build management) - With surefire plugin
  → Selenium WebDriver (mvn dependency)
  → Cucumber (BDD) (mvn dependency)
@@ -14,8 +15,14 @@ Technologies and Libraries Used
  → Allure (Report) 
    Download Allure from the [Allure Releases page](https://github.com/allure-framework/allure2/releases).
  → WebDriverManager (automatic driver management) (mvn dependency)
- → API Test Tool Postman using Newman 
- → IDE - Intellij
+ → API Test Tool Postman using Newman : 
+     Download Postman here: [Postman Download](https://www.postman.com/downloads/)
+     For using Newman need to Donwload NodeJs here: [NodeJs Download](https://nodejs.org/en/download/)
+     npm install -g newman [CLI] 
+   After installation, open Postman and import:
+    functionalTesting.postman_collection.json
+    TEST.postman_environment.json
+  
 
 Project Structure
   The framework is organized as follows:
@@ -51,7 +58,7 @@ Reporting with Allure
   mvn allure:report 
   if allure generate report runtime ,open the report using mvn allure:serve
   
-This creates the folder:
+ This creates the folder:
   target/allure-report
   Open the report in browser (local server):
   allure serve target/allure-results
@@ -60,6 +67,6 @@ Info:
   DriverManager class allows running tests either locally or on Selenium Grid.  
   Utility/Find.java contains dynamic methods for finding elements (Element, Elements).  
   Utility/Assertion.java includes customized assertion methods built on top of TestNG Assert. 
-  Utility/Util.java contains specific action methods (dragandDrop, fileUpload etc.) 
+  Utility/Util.java contains custom and specific action methods (click, sendKeys, dragandDrop, fileUpload etc.) 
   @Before and @After hooks are configured to run before and after each scenario.  
   Reports are reset and regenerated on every mvn clean execution.
