@@ -1,0 +1,8 @@
+﻿/target/
+/.idea/
+*.log
+/.mvn/
+/*.jar
+.allure/
+allure-report/
+

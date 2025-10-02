@@ -1,0 +1,28 @@
+﻿<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ParallelTestSuite" parallel="tests" thread-count="3">
+
+    <!-- Chrome -->
+    <test name="ChromeTest">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="Runner.Runner"/>
+        </classes>
+    </test>
+
+    <!-- Firefox -->
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="Runner.Runner"/>
+        </classes>
+    </test>
+
+    <!-- Safari -->
+    <test name="SafariTest">
+        <parameter name="browser" value="safari"/>
+        <classes>
+            <class name="Runner.Runner"/>
+        </classes>
+    </test>
+
+</suite>
