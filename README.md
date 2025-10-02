@@ -36,15 +36,10 @@ The framework is also strengthened using the TestNG structure.
 ## _Run Commands_
 
 * mvn clean test -Dtest=Runner  → Run all tests
-
 * "-Dcucumber.filter.tags=@Smoke" → Run tests with a specific tag (e.g., @Smoke).
-
 * "-Dbrowser=firefox" → added for browser selection. If not added, the default definition will work.
-
 * -DbaseURL=https://test.domain.com → added for specific url. If not added, the default defined url will work.
-
 * -DrunMode=grid → Parallel execution using TestNG XML (Grid execution)
-
 * Run API Test : postman collections and postman environment files using newman
  run command:
  newman run src/test/resources/functionalTesting.postman_collection.json -e src/test/resources/TEST.postman_environment.json --export-environment src/test/resources/TEST.postman_environment.json
@@ -70,22 +65,26 @@ The framework is also strengthened using the TestNG structure.
  ---
 # Mobile Automation Strategy
 
-## 1.Objective
+## 1.Test Strategy
 
-The objective of this test plan is to validate the core functionalities of the mobile e-commerce application through automation.
+  - **Framework & Tools:**
+    In this project we will use **Appium** server for both Android and IOS App.
+    We can build frameworks using many different languages ​​using Appium. However, we will build our framework in Java.
+    Appium (Java + TestNG + Allure + CI/CD Integration).
+    **Advantage of Java and Appium**
+    * To ensure compatibility with our web ui framework
+    * Avoid the effort of building a new one from scratch
+    * This will ensure easy maintenance and has a large comminity network
+    * With Appium, we can use the same Page Object Model and test scenarios for both platforms, reducing duplicated efforts.
+  - **Approach:** Page Object Model + Data-driven automation.
+  - **Execution:** Automated tests will run on both emulators/simulators and selected real devices.
+  - **CI/CD:** Integrated with Jenkins/GitHub Actions to ensure regression runs in each environment and release cycle
+---
 
----   
+## 2.Scope
 
-## 2.Framework and Tool Selection
-
-In this project we will use **Appium** server for both Android and IOS App.
-We can build frameworks using many different languages ​​using Appium. However, we will build our framework in Java.
-Appium (Java + TestNG + Allure + CI/CD Integration).
-**Advantage of Java and Appium**
-* To ensure compatibility with our web ui framework
-* Avoid the effort of building a new one from scratch
-* This will ensure easy maintenance and has a large comminity network
-* With Appium, we can use the same Page Object Model and test scenarios for both platforms, reducing duplicated efforts.
+- **In Scope:** Functional, regression, and smoke testing of Android and iOS apps.  
+- **Out of Scope:** Performance, load, and non-mobile platforms.  
 
 ---
 
@@ -118,10 +117,50 @@ The focus will be on high-impact user journeys that are critical for customer ex
 
 ---
          
-## 5. Test Deliverables
-- Automated scripts for prioritized scenarios.  
-- Execution reports (Allure/ExtentReports).  
-- Defect logs in Jira.
+## 4. Test Deliverables
+- Automated scripts for prioritized scenarios 
+- Execution reports (Allure/ExtentReports)
+- Defect logs in Jira
 
+ **************************************************
+---
+
+# CI/CD Integration Strategy for Web UI & API Tests
+
+We design pipeline competable with company release process. If the company's pipeline is designed with the truncbase approach 
+We must execute automation scripts on every marge/pull request and in deployment process DEV INT PROD environment.
+for first commit we run all api test firstly. 
+deployment to INT environment we can run API test and UI Smoke test 
+depolyment to PROD environment we can run API test and UI Regression test
+We can manage test case execution strategy with tag using @Smoke @Regression @Integration 
+
+## 1. CI/CD Tool Selection
+I will use **Jenkins** for CI/CD integration.
+Advantages of Jenkins:
+- It’s already widely adopted in enterprise environments
+- Strong plugin ecosystem (Maven, Allure, Git, Docker, etc.)
+- Easy integration with version control (GitHub/GitLab) and scheduling (cron jobs)
+
+## 2. Pipeline Stages
+A high-level Jenkins pipeline (Declarative Pipeline) would look like this:
+
+### **Checkout Code**
+- Pull latest code from Git (master or main branches)
+
+### **Set Up Environment**
+- Install dependencies using Maven (mvn clean install)
+- Configure environment variables (e.g., browser, baseURL, apiBaseURL) These parameters are ready to use in our framework
+
+### **Run Tests**
+
+- API Tests: Using Postman tool and run with Newman
+- UI Tests: Run Selenium + TestNG + BDD Cucumber tests with configured browsers
+- We can managed environment URL and browser on CLI (mvn clean verify -Dtest=Runner -Dbrowser=chrome -DbaseURL=https://testdomain.com)
+
+### **Generate Reports**
+
+- Use Allure Reports plugin to collect results from target/allure-results
+- Automatically publish test report as part of Jenkins job
+- We also will be reflecting the Allure json report output to the Kibana Dashboard with Elastic Search
  
                                                   
